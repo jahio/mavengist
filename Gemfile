@@ -9,6 +9,9 @@ gem 'puma', '~> 3.11'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'pry'
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
+
+gem 'simplecov', require: false, group: :test
