@@ -8,7 +8,7 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry'
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'listen', '>= 3.0.5', '< 3.2'
 end
