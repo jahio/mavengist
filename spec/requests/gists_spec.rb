@@ -7,6 +7,20 @@ RSpec.describe "Gists", type: :request do
                         contents: SecureRandom.hex(100))
   end
 
+  describe "DELETE /gists" do
+    it "deletes the given gist" do
+      gist_params = {
+          title: "Test",
+          filename: "test.md",
+          contents: "#Testing"
+      }
+      gist = Gist.create(gist_params)
+      expect {
+        delete gist_path(gist)
+      }.to change(Gist, :count).by(-1)
+    end
+  end
+
   describe "PUT /gists" do
     it "modifies an existing gist" do
       gist_params = {
@@ -19,7 +33,6 @@ RSpec.describe "Gists", type: :request do
 # binding.pry
         put gist_path(gist), params: { gist: gist_params.merge(title: "Testing") }
         expect { gist.reload.title != gist_params[:title] }
-
       # }.to change(gist, :reload)
     end
   end
