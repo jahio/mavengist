@@ -12,6 +12,7 @@
   <tbody>
     <% @gists.each do |gist| %>
       <tr>
+        <td><%= gist.title %></td>
         <td><%= link_to 'Show', gist %></td>
         <td><%= link_to 'Edit', edit_gist_path(gist) %></td>
         <td><%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
