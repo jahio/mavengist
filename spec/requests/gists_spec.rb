@@ -6,8 +6,21 @@ RSpec.describe "Gists", type: :request do
                         filename: SecureRandom.hex(10),
                         contents: SecureRandom.hex(100))
   end
-  describe "GET /gists" do
 
+  describe "POST /gists" do
+    it "creates a new gist" do
+      expect {
+        gist_params = {
+          title: "Test",
+          filename: "test.md",
+          contents: "#Testing"
+        }
+        post gists_path, params: gist_params
+      }.to change(Gist, :count).by(1)
+    end
+  end
+
+  describe "GET /gists" do
     it "displays a list of gists" do
       get gists_path
       expect(response).to have_http_status(200)
