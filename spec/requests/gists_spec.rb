@@ -7,6 +7,23 @@ RSpec.describe "Gists", type: :request do
                         contents: SecureRandom.hex(100))
   end
 
+  describe "PUT /gists" do
+    it "modifies an existing gist" do
+      gist_params = {
+          title: "Test",
+          filename: "test.md",
+          contents: "#Testing"
+      }
+      gist = Gist.create(gist_params)
+      # expect {
+# binding.pry
+        put gist_path(gist), params: { gist: gist_params.merge(title: "Testing") }
+        expect { gist.reload.title != gist_params[:title] }
+
+      # }.to change(gist, :reload)
+    end
+  end
+
   describe "POST /gists" do
     it "creates a new gist" do
       expect {
@@ -15,7 +32,7 @@ RSpec.describe "Gists", type: :request do
           filename: "test.md",
           contents: "#Testing"
         }
-        post gists_path, params: gist_params
+        post gists_path, params: { gist: gist_params }
       }.to change(Gist, :count).by(1)
     end
   end
