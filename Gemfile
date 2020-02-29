@@ -5,7 +5,7 @@ ruby '2.6.2'
 
 gem 'rails', '~> 5.2.3'
 gem 'pg'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 group :development, :test do
   gem 'rspec-rails'
